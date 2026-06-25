@@ -1,0 +1,79 @@
+OMS API Specification
+
+openapi: 3.0.0
+info:
+  title: E-commerce Order Management System API
+  version: 1.0.0
+
+paths:
+
+  /orders:
+    post:
+      summary: Create order
+      description: Create a new order
+      responses:
+        '201':
+          description: Order created
+
+    get:
+      summary: Get all orders
+      responses:
+        '200':
+          description: List of orders
+
+  /orders/{order_id}:
+    get:
+      summary: Get order by ID
+      parameters:
+        - name: order_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Order details
+
+    patch:
+      summary: Update order status
+      parameters:
+        - name: order_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Order updated
+
+    delete:
+      summary: Cancel order
+      parameters:
+        - name: order_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Order cancelled
+
+  /payments:
+    post:
+      summary: Create payment for order
+      responses:
+        '201':
+          description: Payment created
+
+  /shipments/{order_id}:
+    get:
+      summary: Get shipment info
+      parameters:
+        - name: order_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Shipment details
